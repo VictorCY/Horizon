@@ -357,13 +357,15 @@
     "ai_score_threshold": 7.0,
     "time_window_hours": 24
   },
-   "email": {
+  "email": {
     "enabled": true,
-    "smtp_host": "smtp.qq.com",
-    "smtp_port": 587,
-    "username_env": "EMAIL_USER",
+    "smtp_server": "smtp.qq.com",
+    "smtp_port": 465,
+    "imap_server": "imap.qq.com",
+    "imap_port": 993,
+    "email_address": "747878501@qq.com",
     "password_env": "EMAIL_PASS",
-    "from": "747878501@qq.com",
+    "sender_name": "Horizon Daily",
     "recipients": ["zilongyang188@gmail.com"]
   },
   "webhook": null
