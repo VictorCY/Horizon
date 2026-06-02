@@ -21,6 +21,14 @@ jobs:
         run: uv sync
       - name: Prepare GitHub Actions config
         run: echo "Using committed config.json"
+      - name: Debug config
+        run: |
+          echo "===== provider and model ====="
+          grep -A2 provider data/config.json
+          echo "===== languages ====="
+          grep -A3 languages data/config.json
+          echo "===== email ====="
+          grep -A2 '"email"' data/config.json
       - name: Run Horizon
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
