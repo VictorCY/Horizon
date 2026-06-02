@@ -7,7 +7,7 @@ jobs:
   daily-summary:
     runs-on: ubuntu-latest
     permissions:
-      contents: write  # Needed to commit changes
+      contents: write
     steps:
       - name: Checkout code
         uses: actions/checkout@v6
@@ -23,9 +23,10 @@ jobs:
         run: echo "Using committed config.json"
       - name: Run Horizon
         env:
-          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           EMAIL_USER: ${{ secrets.EMAIL_USER }}
           EMAIL_PASS: ${{ secrets.EMAIL_PASS }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           LWN_KEY: ${{ secrets.LWN_KEY }}
         run: uv run horizon --hours 48
       - name: Set current date as environment variable
@@ -35,7 +36,7 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./docs
-          keep_files: true  # Keep existing summaries on gh-pages branch
-          commit_message: "📝 Daily Summary: ${{ env.DATE }}"
+          keep_files: true
+          commit_message: "Daily Summary: ${{ env.DATE }}"
           publish_branch: gh-pages
           enable_jekyll: true
